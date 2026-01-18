@@ -121,6 +121,8 @@
 #define KEY_FAINT_TEXT_ALPHA       @"Faint Text Alpha"
 #define KEY_TAB_COLOR              @"Tab Color"
 #define KEY_USE_TAB_COLOR          @"Use Tab Color"
+#define KEY_PANE_TITLE_COLOR       @"Pane Title Color"
+#define KEY_USE_PANE_TITLE_COLOR   @"Use Pane Title Color"
 #define KEY_USE_SELECTED_TEXT_COLOR @"Use Selected Text Color"
 #define KEY_UNDERLINE_COLOR        @"Underline Color"
 #define KEY_USE_UNDERLINE_COLOR    @"Use Underline Color"

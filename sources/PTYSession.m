@@ -4750,6 +4750,14 @@ webViewConfiguration:(WKWebViewConfiguration *)webViewConfiguration
     return nil;
 }
 
+- (NSColor *)paneTitleColorInProfile:(NSDictionary *)profile {
+    const BOOL dark = _screen.colorMap.darkMode;
+    if ([iTermProfilePreferences boolForColorKey:KEY_USE_PANE_TITLE_COLOR dark:dark profile:profile]) {
+        return [iTermProfilePreferences colorForKey:KEY_PANE_TITLE_COLOR dark:dark profile:profile];
+    }
+    return nil;
+}
+
 - (void)setColorsFromPresetNamed:(NSString *)presetName {
     iTermColorPreset *settings = [iTermColorPresets presetWithName:presetName];
     if (!settings) {
@@ -11772,6 +11780,14 @@ typedef NS_ENUM(NSUInteger, PTYSessionTmuxReport) {
     [[_delegate realParentWindow] editSession:self makeKey:YES];
 }
 
+- (NSColor *)textViewPaneTitleColor {
+    return self.paneTitleColor;
+}
+
+- (void)textViewSetPaneTitleColor:(NSColor *)color {
+    self.paneTitleColor = color;
+}
+
 - (void)textViewToggleBroadcastingInput
 {
     [[_delegate realParentWindow] toggleBroadcastingInputToSession:self];
@@ -15090,6 +15106,23 @@ typedef NS_ENUM(NSUInteger, PTYSessionTmuxReport) {
     [self setSessionSpecificProfileValues:dict];
 }
 
+- (NSColor *)paneTitleColor {
+    return [self paneTitleColorInProfile:_profile];
+}
+
+- (void)setPaneTitleColor:(NSColor *)color {
+    NSDictionary *dict;
+    if (color) {
+        dict = @{ [self amendedColorKey:KEY_USE_PANE_TITLE_COLOR]: @YES,
+                  [self amendedColorKey:KEY_PANE_TITLE_COLOR]: [ITAddressBookMgr encodeColor:color] };
+    } else {
+        dict = @{ [self amendedColorKey:KEY_USE_PANE_TITLE_COLOR]: @NO };
+    }
+
+    [self setSessionSpecificProfileValues:dict];
+    [_view paneTitleColorDidChange];
+}
+
 - (void)screenSetTabColorRedComponentTo:(CGFloat)color {
     NSColor *curColor = [self tabColor] ?: [NSColor it_colorInDefaultColorSpaceWithRed:0 green:0 blue:0 alpha:0];
     [self setTabColor:[curColor it_colorWithRed:color
@@ -18113,6 +18146,10 @@ static const NSTimeInterval PTYSessionFocusReportBellSquelchTimeIntervalThreshol
 
 - (NSColor *)sessionViewTabColor {
     return self.tabColor;
+}
+
+- (NSColor *)sessionViewPaneTitleColor {
+    return self.paneTitleColor;
 }
 
 - (NSMenu *)sessionViewContextMenu {

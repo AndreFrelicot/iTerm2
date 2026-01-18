@@ -181,6 +181,8 @@ static const CGFloat kButtonSize = 17;
 
 - (void)updateBackgroundColor {
     if (@available(macOS 10.16, *)) {
+        // On Big Sur and later, we just need to redraw - drawRect: will get the color
+        [self setNeedsDisplay:YES];
         return;
     }
     label_.backgroundColor = [self.delegate sessionTitleViewBackgroundColor];

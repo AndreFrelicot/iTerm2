@@ -104,6 +104,9 @@ extern NSString *const SessionViewWasSelectedForInspectionNotification;
 // Gives the tab color for this session.
 - (NSColor *)sessionViewTabColor;
 
+// Gives the pane title color for this session.
+- (NSColor *)sessionViewPaneTitleColor;
+
 // Gives the hamburger menu.
 - (NSMenu *)sessionViewContextMenu;
 
@@ -300,6 +303,7 @@ typedef NS_ENUM(NSUInteger, iTermSessionViewFindDriver) {
 - (void)removeMetalView;
 
 - (void)tabColorDidChange;
+- (void)paneTitleColorDidChange;
 - (void)didBecomeVisible;
 - (void)showUnobtrusiveMessage:(NSString *)message;
 - (void)showUnobtrusiveMessage:(NSString *)message duration:(NSTimeInterval)duration;

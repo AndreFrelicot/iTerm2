@@ -1717,6 +1717,14 @@ hasOpenAnnotationInRange:(VT100GridCoordRange)coordRange {
     [self.delegate textViewEditSession];
 }
 
+- (NSColor *)contextMenuPaneTitleColor:(iTermTextViewContextMenuHelper *)contextMenu {
+    return [self.delegate textViewPaneTitleColor];
+}
+
+- (void)contextMenuSetPaneTitleColor:(iTermTextViewContextMenuHelper *)contextMenu color:(NSColor *)color {
+    [self.delegate textViewSetPaneTitleColor:color];
+}
+
 - (void)contextMenuToggleBroadcastingInput:(iTermTextViewContextMenuHelper *)contextMenu {
     [self.delegate textViewToggleBroadcastingInput];
 }

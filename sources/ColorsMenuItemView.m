@@ -292,7 +292,7 @@ const CGFloat iTermColorsMenuItemViewDisabledAlpha = 0.3;
         const CGFloat alpha = self.effectiveAppearance.it_isDark ? 0.30 : 0.25;
         attributes[NSForegroundColorAttributeName] = [attributes[NSForegroundColorAttributeName] colorWithAlphaComponent:alpha];
     }
-    NSString *labelTitle = @"Tab Color:";
+    NSString *labelTitle = self.labelTitle ?: @"Tab Color:";
     const CGFloat x = [self colorXOffset];
     [labelTitle drawAtPoint:NSMakePoint(x, [ColorsMenuItemView preferredSize].height - kMenuLabelOffsetY) withAttributes:attributes];
     [NSBezierPath setDefaultLineWidth:savedWidth];

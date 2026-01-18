@@ -247,7 +247,7 @@ typedef struct {
                             KEY_ANSI_9_COLOR, KEY_ANSI_10_COLOR, KEY_ANSI_11_COLOR, KEY_ANSI_12_COLOR,
                             KEY_ANSI_13_COLOR, KEY_ANSI_14_COLOR, KEY_ANSI_15_COLOR,
                             KEY_CURSOR_GUIDE_COLOR, KEY_BADGE_COLOR, KEY_TAB_COLOR,
-                            KEY_UNDERLINE_COLOR ];
+                            KEY_UNDERLINE_COLOR, KEY_PANE_TITLE_COLOR ];
         color = [color flatMapWithBlock:^NSArray *(NSString *key) {
             return @[ key,
                       [key stringByAppendingString:COLORS_LIGHT_MODE_SUFFIX],
@@ -262,6 +262,10 @@ typedef struct {
             KEY_USE_TAB_COLOR COLORS_LIGHT_MODE_SUFFIX,
             KEY_USE_TAB_COLOR COLORS_DARK_MODE_SUFFIX,
             KEY_USE_TAB_COLOR,
+
+            KEY_USE_PANE_TITLE_COLOR COLORS_LIGHT_MODE_SUFFIX,
+            KEY_USE_PANE_TITLE_COLOR COLORS_DARK_MODE_SUFFIX,
+            KEY_USE_PANE_TITLE_COLOR,
 
             KEY_USE_SELECTED_TEXT_COLOR COLORS_LIGHT_MODE_SUFFIX,
             KEY_USE_SELECTED_TEXT_COLOR COLORS_DARK_MODE_SUFFIX,
@@ -566,6 +570,10 @@ typedef struct {
             KEY_TAB_COLOR COLORS_DARK_MODE_SUFFIX:                  @"Tab Color in dark mode",
             KEY_USE_TAB_COLOR COLORS_LIGHT_MODE_SUFFIX:             @"Whether to use a custom Tab Color in light mode",
             KEY_USE_TAB_COLOR COLORS_DARK_MODE_SUFFIX:              @"Whether to use a custom Tab Color in dark mode",
+            KEY_PANE_TITLE_COLOR COLORS_LIGHT_MODE_SUFFIX:          @"Pane Title Color in light mode",
+            KEY_PANE_TITLE_COLOR COLORS_DARK_MODE_SUFFIX:           @"Pane Title Color in dark mode",
+            KEY_USE_PANE_TITLE_COLOR COLORS_LIGHT_MODE_SUFFIX:      @"Whether to use a custom Pane Title Color in light mode",
+            KEY_USE_PANE_TITLE_COLOR COLORS_DARK_MODE_SUFFIX:       @"Whether to use a custom Pane Title Color in dark mode",
             KEY_USE_SELECTED_TEXT_COLOR COLORS_LIGHT_MODE_SUFFIX:   @"Whether to use a custom color for selected text in light mode",
             KEY_USE_SELECTED_TEXT_COLOR COLORS_DARK_MODE_SUFFIX:    @"Whether to use a custom color for selected text in dark mode",
             KEY_UNDERLINE_COLOR COLORS_LIGHT_MODE_SUFFIX:           @"Color for underlined text in light mode",
@@ -630,6 +638,8 @@ typedef struct {
             KEY_USE_CURSOR_GUIDE:                                   @"Whether to show the Cursor Guide",
             KEY_TAB_COLOR:                                          @"Tab Color",
             KEY_USE_TAB_COLOR:                                      @"Whether to use a custom Tab Color",
+            KEY_PANE_TITLE_COLOR:                                   @"Pane Title Color",
+            KEY_USE_PANE_TITLE_COLOR:                               @"Whether to use a custom Pane Title Color",
             KEY_USE_SELECTED_TEXT_COLOR:                            @"Whether to use a custom color for selected text",
             KEY_UNDERLINE_COLOR:                                    @"Color for underlined text",
             KEY_USE_UNDERLINE_COLOR:                                @"Whether to use a custom underline color",
@@ -914,6 +924,14 @@ typedef struct {
                   KEY_USE_TAB_COLOR: @NO,
                   KEY_USE_TAB_COLOR COLORS_LIGHT_MODE_SUFFIX: @NO,
                   KEY_USE_TAB_COLOR COLORS_DARK_MODE_SUFFIX: @NO,
+
+                  KEY_PANE_TITLE_COLOR: [NSNull null],
+                  KEY_PANE_TITLE_COLOR COLORS_LIGHT_MODE_SUFFIX: [NSNull null],
+                  KEY_PANE_TITLE_COLOR COLORS_DARK_MODE_SUFFIX: [NSNull null],
+
+                  KEY_USE_PANE_TITLE_COLOR: @NO,
+                  KEY_USE_PANE_TITLE_COLOR COLORS_LIGHT_MODE_SUFFIX: @NO,
+                  KEY_USE_PANE_TITLE_COLOR COLORS_DARK_MODE_SUFFIX: @NO,
 
                   KEY_USE_SELECTED_TEXT_COLOR: @YES,
                   KEY_USE_SELECTED_TEXT_COLOR COLORS_LIGHT_MODE_SUFFIX: @YES,

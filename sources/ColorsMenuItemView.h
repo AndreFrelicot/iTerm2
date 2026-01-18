@@ -29,7 +29,7 @@
 @interface ColorsMenuItemView : NSView
 @property(nonatomic, strong) NSColor *currentColor;
 @property(nonatomic, readonly) NSColor *color;
-
+@property(nonatomic, copy) NSString *labelTitle;  // Defaults to "Tab Color:"
 
 + (NSSize)preferredSize;
 

@@ -100,6 +100,8 @@ hasOpenAnnotationInRange:(VT100GridCoordRange)coordRange;
 - (void)contextMenuRevealAnnotations:(iTermTextViewContextMenuHelper *)contextMenu
                                   at:(VT100GridCoord)coord;
 - (void)contextMenuEditSession:(iTermTextViewContextMenuHelper *)contextMenu;
+- (nullable NSColor *)contextMenuPaneTitleColor:(iTermTextViewContextMenuHelper *)contextMenu;
+- (void)contextMenuSetPaneTitleColor:(iTermTextViewContextMenuHelper *)contextMenu color:(nullable NSColor *)color;
 - (void)contextMenuToggleBroadcastingInput:(iTermTextViewContextMenuHelper *)contextMenu;
 - (BOOL)contextMenuHasCoprocess:(iTermTextViewContextMenuHelper *)contextMenu;
 - (void)contextMenuStopCoprocess:(iTermTextViewContextMenuHelper *)contextMenu;

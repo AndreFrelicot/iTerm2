@@ -940,6 +940,10 @@ NSString *const SessionViewWasSelectedForInspectionNotification = @"SessionViewW
     [_title updateBackgroundColor];
 }
 
+- (void)paneTitleColorDidChange {
+    [_title updateBackgroundColor];
+}
+
 - (void)setNeedsDisplay:(BOOL)needsDisplay {
     [super setNeedsDisplay:needsDisplay];
     [_title updateBackgroundColor];
@@ -2298,6 +2302,17 @@ typedef NS_ENUM(NSInteger, SessionViewTrackingMode) {
         if (color) {
             return color;
         }
+    }
+    // Use pane title color if set, otherwise use the default (which may include tab color)
+    NSColor *paneTitleColor = [_delegate sessionViewPaneTitleColor];
+    if (paneTitleColor) {
+        return [[iTermTheme sharedInstance] backgroundColorForDecorativeSubviewsInSessionWithTabColor:paneTitleColor
+                                                                                  effectiveAppearance:self.effectiveAppearance
+                                                                               sessionBackgroundColor:[_delegate sessionViewBackgroundColor]
+                                                                                     isFirstResponder:[_delegate sessionViewTerminalIsFirstResponder]
+                                                                                          dimOnlyText:[_delegate sessionViewShouldDimOnlyText]
+                                                                                adjustedDimmingAmount:[self adjustedDimmingAmount]
+                                                                                    transparencyAlpha:[self.delegate sessionViewTransparencyAlpha]];
     }
     return [self backgroundColorForDecorativeSubviews];
 }

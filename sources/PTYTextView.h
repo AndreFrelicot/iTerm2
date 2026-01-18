@@ -148,6 +148,8 @@ extern const CGFloat PTYTextViewMarginClickGraceWidth;
                                       fromSelection:(BOOL)fromSelection;
 - (void)textViewInvokeScriptFunction:(NSString *)function;
 - (void)textViewEditSession;
+- (NSColor *)textViewPaneTitleColor;
+- (void)textViewSetPaneTitleColor:(NSColor *)color;
 - (void)textViewToggleBroadcastingInput;
 - (void)textViewCloseWithConfirmation;
 - (void)textViewRestartWithConfirmation;

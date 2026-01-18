@@ -341,6 +341,7 @@ backgroundColor:(NSColor *)backgroundColor;
 // This comes from prefs and is kept up to date.
 @property(nonatomic, readonly) BOOL alertOnMarksinOffscreenSessions;
 @property(nonatomic, copy) NSColor *tabColor;
+@property(nonatomic, copy) NSColor *paneTitleColor;
 
 @property(nonatomic, readonly) DVR *dvr;
 @property(nonatomic, readonly) DVRDecoder *dvrDecoder;

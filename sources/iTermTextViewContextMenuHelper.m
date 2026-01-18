@@ -7,6 +7,7 @@
 
 #import "iTermTextViewContextMenuHelper.h"
 
+#import "ColorsMenuItemView.h"
 #import "DebugLogging.h"
 #import "NSDictionary+iTerm.h"
 #import "NSURL+iTerm.h"
@@ -281,7 +282,8 @@ const int kMaxSelectedTextLengthForCustomActions = 400;
         [item action] == @selector(replaceWithBase64Decoded:) ||
         [item action] == @selector(replaceWithBase64Encoded:) ||
         [item action] == @selector(revealCommandInfo:) ||
-        [item action] == @selector(removeNamedMark:)) {
+        [item action] == @selector(removeNamedMark:) ||
+        [item action] == @selector(changePaneTitleColorToMenuAction:)) {
         return YES;
     }
     if ([item action] == @selector(stopCoprocess:)) {
@@ -610,6 +612,21 @@ const int kMaxSelectedTextLengthForCustomActions = 400;
 
     // Edit Session
     add(@"Edit Session...", @selector(editTextViewSession:));
+
+    // Pane Title Color
+    {
+        NSSize colorViewSize = [ColorsMenuItemView preferredSize];
+        ColorsMenuItemView *colorView = [[ColorsMenuItemView alloc]
+                                         initWithFrame:NSMakeRect(0, 0, colorViewSize.width, colorViewSize.height)];
+        colorView.labelTitle = @"Pane Title Color:";
+        colorView.currentColor = [self.delegate contextMenuPaneTitleColor:self];
+        NSMenuItem *colorItem = [[NSMenuItem alloc] initWithTitle:@"Pane Title Color"
+                                                           action:@selector(changePaneTitleColorToMenuAction:)
+                                                    keyEquivalent:@""];
+        [colorItem setView:colorView];
+        colorItem.target = self;
+        [theMenu addItem:colorItem];
+    }
 
     // Separator
     [theMenu addItem:[NSMenuItem separatorItem]];
@@ -1173,6 +1190,11 @@ const int kMaxSelectedTextLengthForCustomActions = 400;
 
 - (void)editTextViewSession:(id)sender {
     [self.delegate contextMenuEditSession:self];
+}
+
+- (void)changePaneTitleColorToMenuAction:(id)sender {
+    ColorsMenuItemView *colorView = (ColorsMenuItemView *)[sender view];
+    [self.delegate contextMenuSetPaneTitleColor:self color:colorView.color];
 }
 
 - (void)toggleBroadcastingInput:(id)sender {
